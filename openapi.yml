@@ -1,0 +1,277 @@
+openapi: '3.0.1'
+info:
+  title: taxpayer
+  version: '2.0'
+servers:
+  - url: http://localhost:8080
+
+
+paths:
+  /create_taxpayer_info:
+    post:
+      tags:
+        - taxpayer
+      description: Create taxpayer
+      operationId: Create taxpayer
+      responses:
+        '201':
+          description: Create taxpayer Sucessfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '400':
+          description: Create taxpayer unsucessfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+      requestBody:
+        description: Create  taxpayer Sucessfully
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BODYDATA'
+  /get_taxpayer_info:
+    get:
+      tags:
+        - taxpayer
+      description:  Get taxpayer
+      operationId: Get taxpayer
+      responses:
+        '201':
+          description: Get taxpayer Sucessfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BODYDATA'
+        '400':
+          description: Get taxpayer unsucessfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /Update_taxpayer_info/{account_no}:
+    put:
+      tags:
+        - taxpayer
+      description:  Update taxpayer  
+      operationId: Update taxpayer
+      parameters:
+        - name: account_no
+          in: path
+          description: account_no
+          required: true
+          schema:
+            type: number
+      responses:
+        '201':
+          description: Update taxpayer Sucessfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '400':
+          description: Update taxpayer unsucessfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+      requestBody:
+        description: Update taxpayer 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BODYDATA'
+  /delete_taxpayer_info/{account_no}:
+    delete:
+      tags:
+        - taxpayer
+      description:  delete taxpayer
+      operationId: delete taxpayer
+      parameters:
+        - name: account_no
+          in: path
+          description: customer_id
+          required: true
+          schema:
+            type: number
+      responses:
+        '201':
+          description:  Delete taxpayer SucessFully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '400':
+          description: Delete taxpayer unsucessfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+ 
+
+  /create_contact_info:
+    post:
+      tags:
+        - taxpayer
+      description: Create contact information
+      operationId: Create contact information
+      responses:
+        '201':
+          description: Create contact information Sucessfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '400':
+          description: Create contact information unsucessfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+      requestBody:
+        description: Create  contact information Sucessfully
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CONTACT'
+  /get_contact_info:
+    get:
+      tags:
+        - taxpayer
+      description:  Get contact
+      operationId: Get contact
+      responses:
+        '201':
+          description: Get contact information Sucessfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CONTACT'
+        '400':
+          description: Get contact information unsucessfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /Update_contact_info/{Email}:
+    put:
+      tags:
+        - taxpayer
+      description:  Update contact  
+      operationId: Update contact
+      parameters:
+        - name: Email
+          in: path
+          description: Email
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Update contact information Sucessfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '400':
+          description: Update contact information unsucessfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+      requestBody:
+        description: Update taxpayer 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CONTACT'
+  /delete_contact_info/{Email}:
+    delete:
+      tags:
+        - taxpayer
+      description:  delete contact
+      operationId: delete contact
+      parameters:
+        - name: Email
+          in: path
+          description: Email
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description:  Delete contact SucessFully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CONTACT'
+        '400':
+          description: Delete contact unsucessfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+            
+
+components:
+  schemas:
+    ApiResponse:
+      type: object
+      description:  ResponseInStatusCode
+      properties:
+        code: 
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string    
+          
+    BODYDATA:
+      type: object
+      properties:
+        account_no:
+          type: number
+        FirstName:
+          type: string
+        MiddleName: 
+          type: string
+        LastName:
+          type: string
+        Gender:
+          type: string
+        SSN: 
+          type: number
+        DateofBirth:
+          type: string
+        Occupation:
+          type: string
+        FirstentrydateintoUSA:
+          type: number
+        Visatype:
+          type: string
+        FilingStatus:
+          type: string
+    CONTACT:
+      type: object
+      properties:
+        contactNumber:
+          type: number
+        AlternativeNumber:
+          type: number
+        Email:
+          type: string
+        Maillingaddress:
+          type: string
+        city:
+          type: string
+        zipcode: 
+          type: number
+        state:
+          type: string
